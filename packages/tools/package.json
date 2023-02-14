@@ -1,0 +1,23 @@
+{
+  "name": "@plug_chain/tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "build-web": "",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bech32": "^2.0.0",
+    "web3-eth-abi": "^1.8.2",
+    "web3-utils": "^1.8.2"
+  },
+  "devDependencies": {
+    "jest": "^29.4.1",
+    "ts-node": "^10.9.1"
+  }
+}
