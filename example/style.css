@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#root {
+  background-color: #e0e0e0;
+  display: flex;
+  justify-content: space-around;
+  align-items: start;
+  flex-wrap: wrap;
+  padding: 1vw;
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+.card {
+  margin: 10px 0;
+  width: 80vw;
+  max-width: 400px;
+  min-height: 254px;
+  height: auto;
+  padding: 10px;
+  border-radius: 30px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+}
+.title {
+  font-size: 18px;
+  text-align: center;
+  line-height: 2em;
+  user-select: none;
+}
+.label {
+  border: 1px solid #eaeaea;
+  display: flex;
+  padding: 0.5em 1em;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+.label_title {
+  padding-right: 1rem;
+}
+.label_input {
+  border-style: dashed;
+  border-color: #eee;
+  flex: 1;
+  padding: 0.5em;
+}
+.button {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.4rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 600;
+  justify-content: center;
+  padding: calc(0.5rem - 1px) calc(1.5rem - 1px);
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button:hover,
+.button:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:active {
+  background-color: #f0f0f1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+.button:disabled {
+  background-color: #e0e0e0;
+}
+.button:disabled:hover {
+  transform: translateY(0);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #e0e0e0;
+}
+.button:disabled:active {
+  transform: translateY(0);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #e0e0e0;
+}
+
+.code {
+  line-height: 1.6rem;
+  color: #aaa;
+  overflow: auto;
+}
+.code .key {
+  color: #888;
+}
+.code .boolean.true {
+  color: green;
+}
+.code .boolean.false {
+  color: red;
+}
+.code .string {
+  color: #f90;
+  user-select: contain;
+}
+.code .number {
+  color: #09f;
+}

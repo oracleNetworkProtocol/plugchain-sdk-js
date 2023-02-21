@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "lib": [
+      "ES2020",
+      "DOM",
+    ],
+    "target": "ES2015"
+  },
+  "include": [
+    "node_modules/"
+  ]
+}

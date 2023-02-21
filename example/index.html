@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=false">
+  <title>Dapp Example</title>
+  <link rel="icon" href="/logo.png">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="root">
+
+    <div class="card">
+      <h2 class="title">get app language</h2>
+      <button class="button" data-event="language">get</button>
+      <p class="view code" data-event="language"></p>
+    </div>
+
+    <div class="card">
+      <h2 class="title">get bridge version</h2>
+      <button class="button" data-event="version">get</button>
+      <p class="view code" data-event="version"></p>
+    </div>
+
+    <div class="card">
+      <h2 class="title">get approved permission</h2>
+      <button class="button" data-event="approved">get</button>
+      <p class="view code" data-event="approved"></p>
+    </div>
+
+    <div class="card">
+      <h2 class="title">apply for user permission</h2>
+      <div class="label">
+        <p class="label_title">permissions</p>
+        <input class="label_input" type="text" data-event="permission" placeholder='["accountInfo", "baseCall"]' />
+      </div>
+      <button class="button" data-event="apply">get</button>
+      <p class="view code" data-event="apply"></p>
+    </div>
+
+    <div class="card">
+      <h2 class="title">get now account info</h2>
+      <button class="button" data-event="accountInfo">get</button>
+      <p class="view code" data-event="accountInfo"></p>
+    </div>
+
+    <div class="card">
+      <h2 class="title">call plug base prc</h2>
+      <div class="label">
+        <p class="label_title">callName</p>
+        <input class="label_input" type="text" data-event="baseCallName" placeholder="send" />
+      </div>
+      <div class="label">
+        <p class="label_title">callArgs</p>
+        <input class="label_input" type="text" data-event="baseCallArgs" placeholder="gx...." />
+      </div>
+      <div class="label">
+        <p class="label_title">onlySign</p>
+        <input class="label_input" type="text" data-event="baseCallSign" placeholder="true|false" />
+      </div>
+      <button class="button" data-event="baseCall">get</button>
+      <p class="view code" data-event="baseCall"></p>
+    </div>
+
+    <div class="card">
+      <h2 class="title">call evm contract prc</h2>
+      <div class="label">
+        <p class="label_title">type</p>
+        <input class="label_input" type="text" data-event="evmCallName" placeholder="send|call" />
+      </div>
+      <div class="label">
+        <p class="label_title">sender</p>
+        <input class="label_input" type="text" data-event="evmCallSender" placeholder="gx...." />
+      </div>
+      <div class="label">
+        <p class="label_title">to</p>
+        <input class="label_input" type="text" data-event="evmCallTo" placeholder="gx...." />
+      </div>
+      <div class="label">
+        <p class="label_title">data</p>
+        <input class="label_input" type="text" data-event="evmCallData" placeholder="0x0...." />
+      </div>
+      <div class="label">
+        <p class="label_title">onlySign</p>
+        <input class="label_input" type="text" data-event="evmCallSign" placeholder="true|false" />
+      </div>
+      <button class="button" data-event="evmCall">get</button>
+      <p class="view code" data-event="evmCall"></p>
+    </div>
+
+    <div class="card">
+      <h2 class="title">sign data with evm</h2>
+      <div class="label">
+        <p class="label_title">sign data</p>
+        <input class="label_input" type="text" data-event="signData" placeholder="some data" />
+      </div>
+      <button class="button" data-event="signData">get</button>
+      <p class="view code" data-event="signData"></p>
+    </div>
+  </div>
+
+  <script type="module" src="./index.ts"></script>
+</body>
+</html>

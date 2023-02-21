@@ -1,0 +1,22 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "(cd .. && pnpm run --filter=@plug_chain/bridge  build) && parcel ./index.html --no-cache"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@plug_chain/bridge": "link:../packages/bridge",
+    "@plug_chain/tools": "link:../packages/tools",
+    "assert": "^2.0.0",
+    "buffer": "^5.5.0",
+    "events": "^3.3.0",
+    "parcel": "^2.8.3",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0"
+  }
+}
