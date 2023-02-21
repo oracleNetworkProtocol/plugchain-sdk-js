@@ -2,7 +2,9 @@
   "name": "plug_chain_js_sdk_root",
   "version": "1.0.0",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "build": "pnpm run -r build"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

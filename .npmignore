@@ -6,5 +6,6 @@ tests
 coverage
 docs
 runner
+example
 .vscode
 .parcel-cache
