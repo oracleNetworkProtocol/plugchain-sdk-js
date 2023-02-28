@@ -1,6 +1,6 @@
 import { setResultDevice, setResultOk, setResultUnknown } from './interface';
 import { TypeResult, TypePermission, TypeAllResult, TypeSuccessResult, TypeErrorResult } from './interface.type';
-import { checkIsWallet, walletApplyPermissionV2, walletGetAccountV2, walletGetPermissionV2, walletGetVersion } from './wallet';
+import { checkIsWallet, walletApplyPermissionV2, walletBaseCallV2, walletGetAccountV2, walletGetPermissionV2, walletGetVersion } from './wallet';
 import { checkIsExtension } from './web';
 
 /**
@@ -47,24 +47,37 @@ export const getAccountInfoV2 = async(): TypeAllResult<{ address: string; type:'
   return res;
 };
 
-// TODO:
+
 /**
  * call cosmos base prc
  * @returns Promise<{code, message, data}>
  * @returns data: hash string
  **/
 export const baseCallV2 = async(
-  { callName, callArgs, gasLimit = 400000, feeAmount = [{denom: 'uplugcn', amount: '200'}], onlySign = false }: 
+  { callName, callArgs, gasLimit = 400000, feeAmount = {denom: 'uplugcn', amount: '200'}, onlySign = false }: 
   {
     callName: string,
-    callArgs: any,
+    callArgs: {[key: string]: any},
     gasLimit?: number,
-    feeAmount?: {denom: string, amount: string}[],
+    // denom is not use, only amount
+    feeAmount?: {denom: string, amount: string},
     /** if only sign is true, the function will return sign data with offline mode */
     onlySign?: boolean
   }
 ): TypeAllResult<string> => {
-  return setResultDevice();
+  /** MsgSend
+   * { toAddress: string, volume: number, denom: string, gasAll?: string, memo?: string, gasLimit?: number} */
+  /** MsgSwapWithinBatch
+   * { poolId: number, fromSymbol: string, fromAmount: string, toSymbol: string, feeAmount: string, orderPrice: number, gasAll?: string, gasLimit?: number} */
+  /** MsgCreatePool
+   * { fromSymbol: string, toSymbol: string, fromAmount: string, toAmount: string, gasAll?: string, gasLimit?: number} */
+  /** dexPoolAddExchange
+   * { poolId: number, fromSymbol: string, toSymbol: string, fromAmount: string, toAmount: string, gasAll?: string, gasLimit?: number} */
+  /** dexPoolRemoveExchange
+   * { poolId: number, fromSymbol: string, fromAmount: string, gasAll?: string, gasLimit?: number} */
+  let res: Awaited<TypeAllResult<string>> = setResultDevice();
+  if (checkIsWallet()) res = await walletBaseCallV2(callName, {memo: "", gasLimit, gasAll: feeAmount.amount, onlySign, ...callArgs});
+  return res;
 }
 
 /**

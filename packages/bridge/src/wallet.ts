@@ -1,5 +1,5 @@
 import { TypeAllResult, TypePermission } from './interface.type';
-import { setResultDevice, setResultOk, setResultReject, setResultPermission } from './interface';
+import { setResultDevice, setResultOk, setResultReject, setResultPermission, setResultUnknown } from './interface';
 
 export const checkIsWallet = () => {
   const tool = (window as any)._cosmoWalletFunction;
@@ -53,7 +53,31 @@ export const walletGetAccountV2 = async (): TypeAllResult<{ address: string; typ
     else return setResultDevice();
   } catch (err: any) {
     if (err.toString().match('No Permission')) return setResultPermission(err);
-    return setResultDevice(err);
+    return setResultUnknown(err);
+  }
+};
+
+export const walletBaseCallV2 = async (name: string, args: {[key: string]: any}): TypeAllResult<string> => {
+  let callName = '';
+  if (name === 'MsgSend') {
+    callName = 'baseCallV2.MsgSend';
+  } else if (name === 'MsgSwapWithinBatch') {
+    callName = 'baseCallV2.MsgSwapWithinBatch';
+  } else if (name === 'MsgCreatePool') {
+    callName = 'baseCallV2.MsgCreatePool';
+  } else if (name === 'dexPoolAddExchange') {
+    callName = 'baseCallV2.dexPoolAddExchange';
+  } else if (name === 'dexPoolRemoveExchange') {
+    callName = 'baseCallV2.dexPoolRemoveExchange';
+  }
+  try {
+    if (callName === '') throw new Error('no call name');
+    let res = await _demoFunction<string>(callName, args);
+    if (res) return setResultOk(res);
+    else return setResultDevice();
+  } catch (err: any) {
+    if (err.toString().match('No Permission')) return setResultPermission(err);
+    return setResultUnknown(err);
   }
 };
 

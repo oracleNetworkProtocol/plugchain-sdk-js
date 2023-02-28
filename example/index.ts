@@ -3,6 +3,7 @@ import { getVersion, getPermissionV2, applyPermissionV2, baseCallV2, getAccountI
 const getBtn = (dataEvent: string) => document.querySelector(`button.button[data-event="${dataEvent}"]`);
 const getView = (dataEvent: string): HTMLParagraphElement => document.querySelector(`p.view[data-event="${dataEvent}"]`)!;
 const getInput = (dataEvent: string): string => (document.querySelector(`input[data-event=${dataEvent}]`) as HTMLInputElement).value;
+const getSelect = (dataEvent: string): string => (document.querySelector(`select[data-event=${dataEvent}]`) as HTMLInputElement).value;
 const setData = (dataEvent: string, input: any) => {
   try {
     getView(dataEvent).innerHTML = JSON.stringify(input, null, 2)
@@ -53,8 +54,12 @@ async function btnEvent(target: HTMLButtonElement) {
       break;
     }
     case getBtn('baseCall'): {
+      let will = {};
+      try {
+        will = JSON.parse(getInput('baseCallArgs'));
+      } catch (_) {}
       const res = await baseCallV2({
-        callName: getInput('baseCallName'), callArgs: getInput('baseCallArgs'), onlySign: getInput('baseCallSign') === 'true'
+        callName: getSelect('baseCallName'), callArgs: will, onlySign: getInput('baseCallSign') === 'true'
       });
       setData('baseCall', res);
       break;

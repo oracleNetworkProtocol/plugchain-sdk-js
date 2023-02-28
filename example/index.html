@@ -49,11 +49,23 @@
       <h2 class="title">call plug base prc</h2>
       <div class="label">
         <p class="label_title">callName</p>
-        <input class="label_input" type="text" data-event="baseCallName" placeholder="send" />
+        <!-- <input class="label_input" type="text" data-event="baseCallName" placeholder="send" /> -->
+        <select class="label_input" data-event="baseCallName" name="" id="baseCallSelect">
+          <!-- {"toAddress": "gx1y5wgrzj9n2zt6jpryy2gg4avvfan0hvnrdysdg", "volume": "1", "denom": "ddd"} -->
+          <option value="MsgSend">MsgSend</option>
+          <!-- { poolId: 1, fromSymbol: "gx", fromAmount: "1", toSymbol: "gx", feeAmount: "0.5" orderPrice: 0.24} -->
+          <option value="MsgSwapWithinBatch">MsgSwapWithinBatch</option>
+          <!-- { fromSymbol: "gx", fromAmount: "1", toSymbol: "gx", toAmount: "1" } -->
+          <option value="MsgCreatePool">MsgCreatePool</option>
+          <!-- { poolId: 1, fromSymbol: "gx", fromAmount: "1", toSymbol: "gx", toAmount: "1" } -->
+          <option value="MsgDepositWithinBatch">MsgDepositWithinBatch</option>
+          <!-- { poolId: 1, fromSymbol: "gx", fromAmount: "1" } -->
+          <option value="MsgWithdrawWithinBatch">MsgWithdrawWithinBatch</option>
+        </select>
       </div>
       <div class="label">
         <p class="label_title">callArgs</p>
-        <input class="label_input" type="text" data-event="baseCallArgs" placeholder="gx...." />
+        <input class="label_input" type="text" data-event="baseCallArgs" placeholder="read source code" />
       </div>
       <div class="label">
         <p class="label_title">onlySign</p>
