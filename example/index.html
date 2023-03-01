@@ -79,11 +79,10 @@
       <h2 class="title">call evm contract prc</h2>
       <div class="label">
         <p class="label_title">type</p>
-        <input class="label_input" type="text" data-event="evmCallName" placeholder="send|call" />
-      </div>
-      <div class="label">
-        <p class="label_title">sender</p>
-        <input class="label_input" type="text" data-event="evmCallSender" placeholder="gx...." />
+        <select class="label_input" data-event="evmCallType" name="" id="evmCallType">
+          <option value="call">call</option>
+          <option value="send">send</option>
+        </select>
       </div>
       <div class="label">
         <p class="label_title">to</p>
@@ -92,6 +91,10 @@
       <div class="label">
         <p class="label_title">data</p>
         <input class="label_input" type="text" data-event="evmCallData" placeholder="0x0...." />
+      </div>
+      <div class="label">
+        <p class="label_title">volume</p>
+        <input class="label_input" type="text" data-event="evmCallVolume" placeholder="1." />
       </div>
       <div class="label">
         <p class="label_title">onlySign</p>

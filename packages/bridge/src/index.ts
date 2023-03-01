@@ -1,6 +1,7 @@
+import { getHexAddress } from '@plug_chain/tools';
 import { setResultDevice, setResultOk, setResultUnknown } from './interface';
 import { TypeResult, TypePermission, TypeAllResult, TypeSuccessResult, TypeErrorResult } from './interface.type';
-import { checkIsWallet, walletApplyPermissionV2, walletBaseCallV2, walletGetAccountV2, walletGetPermissionV2, walletGetVersion } from './wallet';
+import { checkIsWallet, walletApplyPermissionV2, walletBaseCallV2, walletContractCallSignV2, walletContractCallV2, walletGetAccountV2, walletGetPermissionV2, walletGetVersion } from './wallet';
 import { checkIsExtension } from './web';
 
 /**
@@ -83,17 +84,17 @@ export const baseCallV2 = async(
 /**
  * call evm contract prc
  * @returns Promise<{code, message, data}>
- * @returns data: hash string
+ * @returns data: hash string | signed string
  **/
 export const contractCallV2 = async(
-  {type, sender, to, data, gasPrice, onlySign}:
+  {type, to, volume, data, gasPrice, onlySign}:
   {
     /** call evm type */
     type: 'send'|'call',
-    /** sender user address. example: gx1.... */
-    sender: string,
-    /** recipient address */
+    /** recipient address. example: gx..... */
     to: string,
+    /** send base token(uplugcn) with the transfer */
+    volume?: string,
     /** example: 0x00000....1212 */
     data: string,
     gasPrice?: string,
@@ -102,7 +103,9 @@ export const contractCallV2 = async(
     onlySign?: boolean,
   }
 ): TypeAllResult<string> => {
-  return setResultDevice();
+  let res: Awaited<TypeAllResult<string>> = setResultDevice();
+  if (checkIsWallet()) res = await walletContractCallV2({type, to: getHexAddress(to), data, volume, gasPrice, onlySign});
+  return res;
 }
 
 /**
@@ -111,7 +114,9 @@ export const contractCallV2 = async(
  * @returns data: string
  **/
 export const contractSignStrV2 = async(signStr: string): TypeAllResult<string> => {
-  return setResultDevice();
+  let res: Awaited<TypeAllResult<string>> = setResultDevice();
+  if (checkIsWallet()) res = await walletContractCallSignV2(signStr);
+  return res;
 };
 
 /**

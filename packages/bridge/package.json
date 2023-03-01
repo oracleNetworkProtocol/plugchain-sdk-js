@@ -13,9 +13,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@plug_chain/tools": "link:../tools"
   },
   "devDependencies": {
     "jest": "^29.4.1",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "@types/bn.js": "^5.1.1",
+    "@types/node": "^18.13.0"
   }
 }

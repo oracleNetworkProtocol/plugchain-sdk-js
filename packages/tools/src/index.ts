@@ -1,5 +1,5 @@
 import web3EthAbi from 'web3-eth-abi';
-import { AbiInput, bytesToHex, hexToBytes, isAddress, isHex, stripHexPrefix } from 'web3-utils';
+import { AbiInput, bytesToHex, hexToBytes, isAddress, stripHexPrefix } from 'web3-utils';
 import { bech32 } from 'bech32';
 
 const encodeFunc = web3EthAbi.encodeFunctionSignature;
@@ -30,10 +30,9 @@ export const addressForBech32ToHex: (bech: string, LIMIT?: number) => string = (
 export const isHexAddress: (input: string) => boolean = isAddress;
 export const isBechAddress: (input: string, prev?: string) => boolean = (input, prev = 'gx') => {
   if (!new RegExp('^' + prev + '1').test(input)) return false;
-  if (input.length !== 39 + prev.length) return false;
   let addressInput = input.replace(new RegExp('^' + prev + '1'), '');
-  if (/[1|O|0|l|I]/.test(addressInput)) return false;
-  return true;
+  if (/^[a-zA-Z\d]{38}$/.test(addressInput)) return true;
+  else return false;
 };
 
 export const getHexAddress: (input: string) => string = (input) => {
