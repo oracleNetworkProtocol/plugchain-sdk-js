@@ -81,6 +81,42 @@ export const walletBaseCallV2 = async (name: string, args: {[key: string]: any})
   }
 };
 
+export const walletContractCallV2 = async (args:
+  {
+    /** call evm type */
+    type: 'send'|'call',
+    /** recipient address */
+    to: string,
+    /** example: 0x00000....1212 */
+    data: string,
+    /** send base token(uplugcn) with the transfer */
+    volume?: string,
+    gasPrice?: string, // no use in app wallet
+    maxGas?: string, // no use in app wallet
+    /** if only sign is true, the function will return sign data with offline mode */
+    onlySign?: boolean,
+  }): TypeAllResult<string> => {
+  try {
+    let res = await _demoFunction<{data: string, status: number}>('contractCallV2.base', args);
+    if (res && res.status === 0) return setResultOk(res.data);
+    else return setResultDevice(res?.data);
+  } catch (err: any) {
+    if (err.toString().match('No Permission')) return setResultPermission(err);
+    return setResultUnknown(err);
+  }
+};
+
+export const walletContractCallSignV2 = async (signStr: string): TypeAllResult<string> => {
+  try {
+    let res = await _demoFunction<{data: string, status: number}>('contractCallV2.sign', {signData: signStr});
+    if (res && res.status === 200) return setResultOk(res.data);
+    else return setResultDevice(res?.data);
+  } catch (err: any) {
+    if (err.toString().match('No Permission')) return setResultPermission(err);
+    return setResultUnknown(err);
+  }
+}
+
 
 
 const _demoFunction = async <T = any>(type: string, data: any, sleepTime = 10): Promise<T|null> => {

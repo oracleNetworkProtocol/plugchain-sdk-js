@@ -1,4 +1,4 @@
-import { addressForBech32ToHex, addressForHexToBech32 } from './../src/index';
+import { addressForBech32ToHex, addressForHexToBech32, getHexAddress, getBechAddress } from './../src/index';
 import { contractFormatDataV2 } from "../src";
 
 describe('tools test', () => {
@@ -22,5 +22,17 @@ describe('tools test', () => {
   it('bech32 address to plug hex address', () => {
     const getHexAddress = addressForBech32ToHex(bech32Address);
     expect(getHexAddress).toBe(hexAddress);
+  });
+
+  it('any address to plug hex address', () => {
+    const hexAddressOne = getHexAddress(bech32Address);
+    const hexAddressTwo = getHexAddress(hexAddress);
+    expect(hexAddressOne).toBe(hexAddressTwo);
+  });
+
+  it('any address to plug bech32 address', () => {
+    const bechAddressOne = getBechAddress(bech32Address);
+    const bechAddressTwo = getBechAddress(hexAddress);
+    expect(bechAddressOne).toBe(bechAddressTwo);
   });
 });

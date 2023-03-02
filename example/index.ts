@@ -66,10 +66,10 @@ async function btnEvent(target: HTMLButtonElement) {
     }
     case getBtn('evmCall'): {
       const res = await contractCallV2({
-        type: getInput('evmCallName') === 'send' ? 'send' : 'call',
-        sender: getInput('evmCallSender'),
+        type: getSelect('evmCallType') == 'send' ? 'send' : 'call',
         to: getInput('evmCallTo'),
         data: getInput('evmCallData'),
+        volume: getInput('evmCallVolume'),
         onlySign: getInput('evmCallSign') === 'true'
       });
       setData('evmCall', res);
