@@ -1,7 +1,7 @@
 import { setResultDevice, setResultOk, setResultUnknown } from './interface';
 import { TypeResult, TypePermission, TypeAllResult, TypeSuccessResult, TypeErrorResult } from './interface.type';
 import { checkIsWallet, walletApplyPermissionV2, walletBaseCallV2, walletGetAccountV2, walletGetPermissionV2, walletGetVersion } from './wallet';
-import { checkIsExtension } from './web';
+import { checkIsExtension, extensionApplyPermissionV2, extensionBaseCallV2, extensionGetAccountV2, extensionGetPermissionV2, extensionGetVersion,extensionContractCallV2,extensionContractSignStrV2,extensionGetBalanceV2,extensionGetRealBalanceV2 } from './web';
 
 /**
  * get now device tools version
@@ -10,6 +10,7 @@ import { checkIsExtension } from './web';
 export const getVersion = async(): TypeAllResult<string> => {
   let res: Awaited<TypeAllResult<string>> = setResultDevice();
   if (checkIsWallet()) res = await walletGetVersion();
+  if (checkIsExtension()) res = await extensionGetVersion();
   return res;
 };
 
@@ -20,6 +21,7 @@ export const getVersion = async(): TypeAllResult<string> => {
 export const getPermissionV2 = async(): TypeAllResult<TypePermission[]> => {
   let res: Awaited<TypeAllResult<TypePermission[]>> = setResultDevice();
   if (checkIsWallet()) res = await walletGetPermissionV2();
+  else if (checkIsExtension()) res = await extensionGetPermissionV2();
   return res;
 };
 
@@ -33,6 +35,7 @@ export const applyPermissionV2 = async(
   let res: Awaited<TypeAllResult<TypePermission[]>> = setResultDevice();
   let _permission: TypePermission[] = permission === '*' ? ['accountInfo', 'baseCall', 'contractCall'] : permission;
   if (checkIsWallet()) res = await walletApplyPermissionV2(_permission);
+  if (checkIsExtension()) res = await extensionApplyPermissionV2(_permission);
   return res;
 };
 
@@ -44,6 +47,7 @@ export const applyPermissionV2 = async(
 export const getAccountInfoV2 = async(): TypeAllResult<{ address: string; type:'PRC10'|'PRC20' }> => {
   let res: Awaited<TypeAllResult<{ address: string; type:'PRC10'|'PRC20' }>> = setResultDevice();
   if (checkIsWallet()) res = await walletGetAccountV2();
+  if (checkIsExtension()) res = await extensionGetAccountV2();
   return res;
 };
 
@@ -77,6 +81,7 @@ export const baseCallV2 = async(
    * { poolId: number, fromSymbol: string, fromAmount: string, gasAll?: string, gasLimit?: number} */
   let res: Awaited<TypeAllResult<string>> = setResultDevice();
   if (checkIsWallet()) res = await walletBaseCallV2(callName, {memo: "", gasLimit, gasAll: feeAmount.amount, onlySign, ...callArgs});
+  if (checkIsExtension()) res = await extensionBaseCallV2(callName, {memo: "", gasLimit, gasAll: feeAmount.amount, onlySign, ...callArgs});
   return res;
 }
 
@@ -102,7 +107,9 @@ export const contractCallV2 = async(
     onlySign?: boolean,
   }
 ): TypeAllResult<string> => {
-  return setResultDevice();
+  let res: Awaited<TypeAllResult<string>> = setResultDevice();
+  if (checkIsExtension()) res = await extensionContractCallV2(type, to, data,onlySign);
+  return res;
 }
 
 /**
@@ -111,7 +118,20 @@ export const contractCallV2 = async(
  * @returns data: string
  **/
 export const contractSignStrV2 = async(signStr: string): TypeAllResult<string> => {
-  return setResultDevice();
+  let res: Awaited<TypeAllResult<string>> = setResultDevice();
+  if (checkIsExtension()) res = await extensionContractSignStrV2(signStr);
+  return res;
+};
+
+/**
+ * get balance
+ * @returns Promise<{code, message, data}>
+ * @returns data: string
+ **/
+export const getBalanceV2 = async(signStr: string): TypeAllResult<string> => {
+  let res: Awaited<TypeAllResult<string>> = setResultDevice();
+  if (checkIsExtension()) res = await extensionGetBalanceV2();
+  return res;
 };
 
 /**
