@@ -1,0 +1,1 @@
+[docs](https://github.com/shamerKill/plug-js/blob/main/docs/bridge.md)
