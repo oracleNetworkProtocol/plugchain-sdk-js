@@ -12,6 +12,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "files": [
+    "dist/",
+    "src"
+  ],
   "dependencies": {
     "bech32": "^2.0.0",
     "web3-eth-abi": "^1.8.2",
