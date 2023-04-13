@@ -5,10 +5,14 @@
   "scripts": {
     "build": "pnpm run -r build"
   },
-  "keywords": [],
+  "keywords": [
+    "plug chain",
+    "plugchain",
+    "pando",
+    "pando wallet"
+  ],
   "author": "",
   "license": "ISC",
-  "private": true,
   "devDependencies": {
     "@types/jest": "^29.4.0",
     "ts-jest": "^29.0.5",
