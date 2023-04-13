@@ -131,11 +131,11 @@ export const contractSignStrV2 = async(signStr: string): TypeAllResult<string> =
  * @returns Promise<{code, message, data}>
  * @returns data: string
  **/
-export const getBalanceV2 = async(signStr: string): TypeAllResult<string> => {
-  let res: Awaited<TypeAllResult<string>> = setResultDevice();
-  if (checkIsExtension()) res = await extensionGetBalanceV2();
-  return res;
-};
+// export const getBalanceV2 = async(signStr: string): TypeAllResult<string> => {
+//   let res: Awaited<TypeAllResult<string>> = setResultDevice();
+//   if (checkIsExtension()) res = await extensionGetBalanceV2();
+//   return res;
+// };
 
 /**
  * check platform type. app or extension

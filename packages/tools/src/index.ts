@@ -1,9 +1,11 @@
 import web3EthAbi from 'web3-eth-abi';
-import { AbiInput, bytesToHex, hexToBytes, isAddress, stripHexPrefix } from 'web3-utils';
+import { AbiInput as EthAbiInput, bytesToHex, hexToBytes, isAddress, stripHexPrefix } from 'web3-utils';
 import { bech32 } from 'bech32';
 
 const encodeFunc = web3EthAbi.encodeFunctionSignature;
 const encodeArgs = web3EthAbi.encodeParameters.bind(web3EthAbi);
+
+export type AbiInput = EthAbiInput;
 
 /**
  * format contract abi data to hex data
