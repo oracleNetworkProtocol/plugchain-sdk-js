@@ -9,9 +9,16 @@
     "build-web": "",
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": [
+    "plug chain",
+    "plugchain",
+    "plugchain tools"
+  ],
   "author": "",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist/",
     "src"

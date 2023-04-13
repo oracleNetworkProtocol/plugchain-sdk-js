@@ -9,9 +9,17 @@
     "build-web": "",
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": [
+    "plug chain",
+    "plugchain",
+    "pando",
+    "pando wallet"
+  ],
   "author": "",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist/",
     "src"
